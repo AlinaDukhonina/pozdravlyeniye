@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>День</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background: #0f0f12;
+        color: #f8d7e4;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: #16161c;
+        border-radius: 16px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid #2a2a33;
+        transition: 0.25s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card:hover {
+        border-color: #ffb6d5;
+        box-shadow: 0 10px 30px rgba(255, 182, 213, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto; /* изображение полностью отображается */
+        display: block;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card h2 {
+        font-size: 1.05rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: #ffc4dd;
+    }
+
+    /* 📱 Мобильная адаптация */
+    @media (max-width: 768px) {
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            grid-template-columns: 1fr; /* одна колонка */
+            gap: 20px;
+        }
+
+        .card h2 {
+            font-size: 1rem;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .card h2 {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="drch.html" class="card">
+        <img src="https://i.pinimg.com/736x/ac/72/6d/ac726da28b6208f9711c89680165700a.jpg" alt="">
+        <div class="card-content">
+            <h2>С днём расстрела Чикатило</h2>
+        </div>
+    </a>
+
+    <a href="dsv.html" class="card">
+        <img src="https://i.pinimg.com/1200x/1d/8a/12/1d8a129f000a70480fd4e72beeafcfbe.jpg" alt="">
+        <div class="card-content">
+            <h2>С днём святого Валентина</h2>
+        </div>
+    </a>
+
+</div>
+
+</body>
+</html>

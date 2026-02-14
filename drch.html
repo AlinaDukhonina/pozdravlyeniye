@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тёмная страница</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@300;400;500&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #1a0005, #0b0b0f 70%);
+    color: #ffd6e0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: rgba(20, 0, 10, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 50px 40px;
+    box-shadow: 0 0 40px rgba(255, 0, 80, 0.15);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 3rem;
+    color: #ff4d6d;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.85;
+}
+
+/* Формулы */
+.formula-box {
+    max-width: 750px;
+    margin: 0 auto 50px auto;
+    padding: 0 20px 25px 20px; /* верхний паддинг убран */
+    background: rgba(0,0,0,0.35);
+    border-radius: 15px;
+    font-family: 'Fira Code', monospace;
+    color: #ffc2d1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+/* Убираем отступ у первой строки */
+.formula-box div:first-child {
+    margin-top: 0;
+}
+
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.image-box {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #1a0a12;
+    box-shadow: 0 10px 25px rgba(255,0,80,0.15);
+}
+
+.image-box img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(40%) contrast(110%);
+}
+
+/* Кнопка */
+.button {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.button:hover {
+    background: #ff1f4b;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,0,80,0.4);
+}
+
+/* Ножи */
+.knife {
+    position: fixed;
+    top: -20px;
+    font-size: 22px;
+    animation: fall linear forwards;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 0 6px rgba(255,0,0,0.4));
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .formula-box {
+        padding: 0 15px 20px 15px;
+        font-size: 0.9rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr; /* одна колонка */
+        gap: 15px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 14px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Тёмная дата</h1>
+    <p class="subtitle">Формулы демонстрируются через JavaScript</p>
+
+    <div class="formula-box" id="formulaBox">
+        <!-- Формулы будут добавляться через JS -->
+    </div>
+
+    <div class="gallery">
+        <div class="image-box">
+            <img src="https://i.pinimg.com/1200x/17/86/2c/17862cda23b15a70447bc825f02cf7fe.jpg">
+        </div>
+        <div class="image-box">
+            <img src="https://i.pinimg.com/736x/4a/6f/cf/4a6fcf550d8ed41afcfd07848b7ec44d.jpg">
+        </div>
+    </div>
+
+    <div class="button" onclick="startKnives()">Вызвать тень 🔪</div>
+
+</div>
+
+<script>
+// Формулы
+const formulas = [
+    "x = -10 {0 < y < 5}; x = -7 {0 < y < 5}; y = 1.66x + 16.6 {-10 < x < -7}",
+    "x = -5 {0 < y < 5}; x = -2 {0 < y < 5}; y = 2.5 {-5 < x < -2}",
+    "x = 0 {0 < y < 5}; x = 3 {0 < y < 5}; y = 2.5 {0 < x < 3}",
+    "y = 5x - 20 {4 < x < 5}; y = -5x + 30 {5 < x < 6}; y = 2.5 {4.5 < x < 5.5}"
+];
+
+const formulaBox = document.getElementById("formulaBox");
+
+// Демонстрация формул с паузой между строк
+formulas.forEach((formula, i) => {
+    setTimeout(() => {
+        const line = document.createElement("div");
+        line.textContent = formula;
+        formulaBox.appendChild(line);
+    }, i * 600);
+});
+
+// Ножи
+function createKnife() {
+    const knife = document.createElement("div");
+    knife.classList.add("knife");
+    knife.innerHTML = "🔪";
+
+    knife.style.left = Math.random() * 100 + "vw";
+    knife.style.fontSize = (Math.random() * 20 + 18) + "px";
+    knife.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(knife);
+
+    setTimeout(() => {
+        knife.remove();
+    }, 6000);
+}
+
+function startKnives() {
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createKnife, i * 120);
+    }
+}
+</script>
+
+</body>
+</html>
